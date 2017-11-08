@@ -1,4 +1,5 @@
 from pico2d import *
+import random
 
 class MAP:
     def __init__(self):
@@ -34,9 +35,14 @@ class CHAR:
             self.x -= 150
         Map.handle_move()
 
-        HP_gauge.frame -= 5
-        if HP_gauge.frame < 0:
-            HP_gauge.frame = 1
+        #모든 몬스터가 앞으로 당겨짐
+        for Mon in Monster:
+            Mon.handle_move()
+
+        #HP게이지 충전, Monster생성하면 삭제하기
+        #HP_gauge.frame -= 5
+        #if HP_gauge.frame < 0:
+        #    HP_gauge.frame = 1
 
         #캐릭터 움직임
         self.frame = 0
@@ -48,9 +54,17 @@ class CHAR:
         else:
             self.x += 150
         Map.handle_move()
-        HP_gauge.frame -= 5
-        if HP_gauge.frame < 0:
-            HP_gauge.frame = 1
+
+        #모든 몬스터가 앞으로 당겨짐
+        for Mon in Monster:
+            Mon.handle_move()
+
+
+        # HP게이지 충전, Monster생성하면 삭제하기
+        #HP_gauge.frame -= 5
+        #if HP_gauge.frame < 0:
+        #    HP_gauge.frame = 1
+
 
         #캐릭터 움직임
         self.frame = 0
@@ -61,6 +75,42 @@ class CHAR:
             self.frame = (self.frame + 1)
         else:
             self.frame = 6
+
+
+class MONSTER:
+    image = None
+
+    def __init__(self):
+        #Monster 위치는 x(70, 220, 370), y(150단위에서 -60)
+        self.x, self.y = 220, 540
+        self.frame = 0
+
+        if MONSTER.image == None:
+            MONSTER.image = load_image('image\MONSTER\monster_state.png')
+
+    def handle_move(self):
+        self.y -= 150
+
+    def draw(self):
+        #x와 y 위치를 랜덤으로 넣기
+        #self.x += (random.randint(0, 2) * 150)
+        #if self.x > 370:
+        #    self.x -= 450
+
+        #self.y += (random.randint(1, 3) * 150)
+        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+
+    def updata(self):
+        self.frame = (self.frame + 1) % 8
+
+        #Monster와 char가 충돌할 때
+        for Mon in Monster:
+            if (Mon.x - 30) < Character.x and (Mon.x + 30) > Character.x and (Mon.y - 30) < Character.y and (Mon.y + 30) > Character.y:
+                Monster.remove(Mon)
+                HP_gauge.frame -= 20
+                if HP_gauge.frame < 0:
+                    HP_gauge.frame = 0
+
 
 class gauge:
     def __init__(self):
@@ -78,13 +128,17 @@ class gauge:
         global running
 
         #HP속도조절
-        if self.count % 1 == 0:
+        if self.count % 2 == 0:
             if self.frame < 99:
                 self.frame = (self.frame + 1)
             else:
+                pass
                 running = False
         self.count = self.count + 1
 
+
+def Update():
+    pass
 
 
 def handle_events():
@@ -103,6 +157,7 @@ def handle_events():
 
 open_canvas(450, 750)
 Character = CHAR()
+Monster = [MONSTER() for i in range(1)]
 Map = MAP()
 HP_gauge = gauge()
 
@@ -113,7 +168,11 @@ while running:
     clear_canvas()
 
 #Update======================
+    Update()
+
     Character.update()
+    for Mon in Monster:
+        Mon.updata()
     HP_gauge.update()
     #========================
 
@@ -123,6 +182,8 @@ while running:
     Map.draw()
 
     Character.draw()
+    for Mon in Monster:
+        Mon.draw()
     HP_gauge.draw()
     #========================
 
