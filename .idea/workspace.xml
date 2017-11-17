@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9d5b2ca-d721-4228-aa87-3e5f1ac6de63" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/image/MONSTER/monster_state.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/image/charPSD.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/image/hpPSD.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/image/monster_PSD.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/image/제목 없음-3.psd" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/image/MAP/MAP(STAGE1)_450x750.png" afterPath="$PROJECT_DIR$/image/MAP/MAP(STAGE1)_450x750.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CHAR.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GAUGE.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MAP.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MONSTER.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TRAP.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/game_framework.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/game_over.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/2GDPProject.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/image/TRAP/trap.png" afterPath="$PROJECT_DIR$/image/TRAP/trap.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/image/TRAP/trap.psd" afterPath="$PROJECT_DIR$/image/TRAP/trap.psd" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2GDPProject.py" afterPath="$PROJECT_DIR$/2GDPProject.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +23,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="2GDPProject.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/2GDPProject.py">
+      <file leaf-file-name="game_framework.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game_framework.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="301" column="58" lean-forward="false" selection-start-line="301" selection-start-column="58" selection-end-line="301" selection-end-column="58" />
+            <state relative-caret-position="1040">
+              <caret line="65" column="19" lean-forward="false" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game_start.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game_start.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main_game.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_game.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-496">
+              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GAUGE.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GAUGE.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRAP.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TRAP.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MAP.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MAP.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MONSTER.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MONSTER.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="609">
+              <caret line="102" column="62" lean-forward="false" selection-start-line="102" selection-start-column="62" selection-end-line="102" selection-end-column="62" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -32,22 +105,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ai_boy_IQ10.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
+      <file leaf-file-name="game_over.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game_over.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1456">
-              <caret line="91" column="90" lean-forward="false" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
-              <folding />
+            <state relative-caret-position="464">
+              <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="boys_team_1000.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py">
+      <file leaf-file-name="CHAR.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CHAR.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="192">
+              <caret line="99" column="18" lean-forward="false" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,6 +141,10 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>MAP</find>
+      <find>runnin</find>
+      <find>frame_time</find>
+      <find>way</find>
+      <find>image</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -74,13 +155,24 @@
       <list>
         <option value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab04/boy_grass_object.py" />
         <option value="$PROJECT_DIR$/image/MONSTER.py" />
-        <option value="$PROJECT_DIR$/MONSTER.py" />
         <option value="$PROJECT_DIR$/2GDPProject.py" />
+        <option value="$PROJECT_DIR$/image/GameStart.py" />
+        <option value="$PROJECT_DIR$/GameStart.py" />
+        <option value="$PROJECT_DIR$/game_framework.py" />
+        <option value="$PROJECT_DIR$/game_over.py" />
+        <option value="$PROJECT_DIR$/game_start.py" />
+        <option value="$PROJECT_DIR$/MAP.py" />
+        <option value="$PROJECT_DIR$/main_game.py" />
+        <option value="$PROJECT_DIR$/MONSTER.py" />
+        <option value="$PROJECT_DIR$/TRAP.py" />
+        <option value="$PROJECT_DIR$/GAUGE.py" />
+        <option value="$PROJECT_DIR$/CHAR.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
+    <option name="x" value="457" />
+    <option name="y" value="55" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -99,7 +191,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -112,17 +204,11 @@
               <item name="2DGP_2015180050" type="462c0819:PsiDirectoryNode" />
               <item name="image" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="2DGP_2015180050" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2DGP_2015180050" type="462c0819:PsiDirectoryNode" />
-              <item name="image" type="462c0819:PsiDirectoryNode" />
-              <item name="TRAP" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -141,8 +227,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.2GDPProject">
-    <configuration name="2GDPProject" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.game_start">
+    <configuration name="CHAR" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -154,7 +240,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="2DGP_2015180050" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2GDPProject.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CHAR.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -176,71 +262,71 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="ai_boy_IQ10" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="TRAP" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="2DGP_2015180050" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TRAP.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="boy_grass_object" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="game_over" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab04" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="2DGP_2015180050" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab04/boy_grass_object.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/game_over.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="boys_team_1000" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="game_start" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="2DGP_2015180050" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/game_start.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.2GDPProject" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ai_boy_IQ10" />
-      <item index="2" class="java.lang.String" itemvalue="Python.boys_team_1000" />
-      <item index="3" class="java.lang.String" itemvalue="Python.boy_grass_object" />
-      <item index="4" class="java.lang.String" itemvalue="Python.MONSTER" />
+      <item index="0" class="java.lang.String" itemvalue="Python.MONSTER" />
+      <item index="1" class="java.lang.String" itemvalue="Python.game_start" />
+      <item index="2" class="java.lang.String" itemvalue="Python.game_over" />
+      <item index="3" class="java.lang.String" itemvalue="Python.CHAR" />
+      <item index="4" class="java.lang.String" itemvalue="Python.TRAP" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.2GDPProject" />
-        <item index="1" class="java.lang.String" itemvalue="Python.MONSTER" />
-        <item index="2" class="java.lang.String" itemvalue="Python.boy_grass_object" />
-        <item index="3" class="java.lang.String" itemvalue="Python.boys_team_1000" />
-        <item index="4" class="java.lang.String" itemvalue="Python.ai_boy_IQ10" />
+        <item index="0" class="java.lang.String" itemvalue="Python.game_start" />
+        <item index="1" class="java.lang.String" itemvalue="Python.TRAP" />
+        <item index="2" class="java.lang.String" itemvalue="Python.CHAR" />
+        <item index="3" class="java.lang.String" itemvalue="Python.MONSTER" />
+        <item index="4" class="java.lang.String" itemvalue="Python.game_over" />
       </list>
     </recent_temporary>
   </component>
@@ -259,17 +345,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.114072494" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.120469086" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19732441" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1962096" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -284,18 +371,14 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1456">
-          <caret line="91" column="90" lean-forward="false" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -304,94 +387,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1456">
-          <caret line="91" column="90" lean-forward="false" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1456">
-          <caret line="91" column="90" lean-forward="false" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1456">
-          <caret line="91" column="90" lean-forward="false" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1456">
@@ -408,16 +404,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1408">
@@ -434,16 +421,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1408">
@@ -467,16 +445,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1408">
@@ -493,16 +462,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1408">
@@ -519,16 +479,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1568">
-          <caret line="99" column="38" lean-forward="false" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1408">
@@ -545,16 +496,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1408">
@@ -571,16 +513,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1328">
@@ -589,16 +522,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1328">
@@ -607,16 +531,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1328">
@@ -625,16 +540,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1328">
@@ -643,16 +549,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1328">
@@ -661,16 +558,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab04/boy_grass_object.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -686,6 +574,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/image/MONSTER.py" />
+    <entry file="file://$PROJECT_DIR$/image/GameStart.py" />
+    <entry file="file://$PROJECT_DIR$/2GDPProject.py" />
+    <entry file="file://$PROJECT_DIR$/GameStart.py" />
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/boys_team_1000.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -696,19 +587,96 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../2017-2DGP/Labs/Lab06 - AI/ai_boy_IQ10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1456">
-          <caret line="91" column="90" lean-forward="false" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
+        <state relative-caret-position="235">
+          <caret line="105" column="29" lean-forward="false" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MONSTER.py" />
-    <entry file="file://$PROJECT_DIR$/2GDPProject.py">
+    <entry file="file://$PROJECT_DIR$/MAP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="301" column="58" lean-forward="false" selection-start-line="301" selection-start-column="58" selection-end-line="301" selection-end-column="58" />
+        <state relative-caret-position="624">
+          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_over.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MONSTER.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="102" column="62" lean-forward="false" selection-start-line="102" selection-start-column="62" selection-end-line="102" selection-end-column="62" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_framework.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1040">
+          <caret line="65" column="19" lean-forward="false" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GAUGE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_start.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-496">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHAR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="99" column="18" lean-forward="false" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TRAP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
