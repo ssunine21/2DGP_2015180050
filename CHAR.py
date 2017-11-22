@@ -69,6 +69,9 @@ class CHAR:
         for Mon in main_game.Monster2:
             Mon.handle_move(frame_time)
 
+        for Mon in main_game.Monster3:
+            Mon.handle_move(frame_time)
+
         for ATK in main_game.M2_ATTACK:
             if ATK.ATTACK == 1:
                 ATK.attack_move(frame_time)
@@ -121,6 +124,9 @@ class CHAR:
         for Mon in main_game.Monster2:
             Mon.handle_move(frame_time)
 
+        for Mon in main_game.Monster3:
+            Mon.handle_move(frame_time)
+
         for ATK in main_game.M2_ATTACK:
             if ATK.ATTACK == 1:
                 ATK.attack_move(frame_time)
@@ -134,9 +140,6 @@ class CHAR:
         self.frame = 0
         self.state = 3
 
-    def handle_skill(self):
-        self.y = main_game.Monster[0].y
-        self.x = main_game.Monster[0].x
 
     def update(self, frame_time):
         if self.way == 1:

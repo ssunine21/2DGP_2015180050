@@ -4,8 +4,8 @@ import game_over
 import CHAR
 import MAP
 import GAUGE
-from SKILL import SKILL
-from MONSTER import MONSTER, MONSTER2
+from SKILL import SKILL, handle_skill
+from MONSTER import MONSTER, MONSTER2, MONSTER3
 from TRAP import TRAP
 from ATTACK import ATTACK1
 
@@ -44,11 +44,12 @@ def get_frame_time():
     current_time += frame_time
     return frame_time
 
-
+frame_time = 0
 #====================================
 Character = None
 Monster = None
 Monster2 = None
+Monster3 = None
 M2_ATTACK = None
 Trap = None
 Map1 = None
@@ -59,7 +60,7 @@ skill = None
 
 
 def enter():
-    global Character, Monster, Monster2, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
+    global Character, Monster, Monster2, Monster3, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
     global current_time
 
     Character = CHAR.CHAR()
@@ -67,6 +68,8 @@ def enter():
 
     Monster = [MONSTER() for i in range(20)]
     Monster2 = [MONSTER2() for i in range(20)]
+    Monster3 = [MONSTER3() for i in range(20)]
+
     M2_ATTACK = [ATTACK1() for i in range(10)]
 
     Trap = [TRAP() for i in range(13)]
@@ -80,12 +83,13 @@ def enter():
 
 
 def exit():
-    global Character, Monster, Monster2, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
+    global Character, Monster, Monster2, Monster3, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
 
     del(Character)
     del(skill)
     del(Monster)
     del(Monster2)
+    del(Monster3)
     del(Trap)
     del(Map1)
     del(Map2)
@@ -102,7 +106,7 @@ def resume():
 
 
 def handle_events():
-    global Level
+    global Level, frame_time
 
     events = get_events()
     for event in events:
@@ -123,12 +127,12 @@ def handle_events():
                 Character.way = 2
                 Level += 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_x):
-            Character.handle_skill()
+            handle_skill(frame_time)
             skill.skill_frame = 0
 
 
 def update():
-    global Monster, Monster2, Trap
+    global Monster, Monster2, Monster3, Trap, frame_time
 
     frame_time = get_frame_time()
 
@@ -139,6 +143,9 @@ def update():
         Mon.update()
     for Mon in Monster2:
         Mon.update()
+    for Mon in Monster3:
+        Mon.update()
+
     for ATK in M2_ATTACK:
         ATK.update(frame_time)
 
@@ -151,7 +158,7 @@ def update():
 
 
 def draw_main_scene():
-    global Monster, Monster2, Trap
+    global Monster, Monster2, Monster3, Trap
     # Draw ===============================
     Map1.draw()
     Map2.draw()
@@ -162,6 +169,8 @@ def draw_main_scene():
     for Mon in Monster:
         Mon.draw()
     for Mon in Monster2:
+        Mon.draw()
+    for Mon in Monster3:
         Mon.draw()
 
     for ATK in M2_ATTACK:
