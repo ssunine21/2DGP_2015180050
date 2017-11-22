@@ -1,3 +1,5 @@
+from pico2d import *
+
 class GameState:
     def __init__(self, state):
         self.enter = state.enter
@@ -78,6 +80,7 @@ def quit():
 def run(start_state):
     global running, stack
     running = True
+    open_canvas(450, 750)
     stack = [start_state]
     start_state.enter()
     while (running):

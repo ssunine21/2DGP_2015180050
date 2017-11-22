@@ -27,9 +27,9 @@ class TRAP:
     def handle_move(self, frame_time):
         distance = main_game.MAX_SPEED_PPS * frame_time
 
-        self.y += (distance * -1)
+        self.y -= distance
 
-        if self.y < (self.defaultY - 150):
+        if main_game.Character.x % 150 == 75:
             self.defaultY -= 150
             self.y = self.defaultY
 
@@ -46,10 +46,11 @@ class TRAP:
                 if main_game.collide(Trp, Mon):
                     main_game.Trap.remove(Trp)
             if main_game.collide(main_game.Character, Trp):
-                game_framework.quit()
+                pass
+                #game_framework.quit()
 
     def collision(self):
-        return self.x - 35, self.y -35, self.x + 35, self.y + 35
+        return self.x - 15, self.y -15, self.x + 15, self.y + 15
 
     def collision_box(self):
         draw_rectangle(*self.collision())

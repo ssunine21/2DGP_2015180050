@@ -9,13 +9,19 @@ count = 0
 
 def enter():
     global image
-    image = load_image('image\GAMEOVER\game_over.png')
+    image = load_image('image\GAMEOVER\overimage.png')
 
 
 def exit():
     global image
     del(image)
 
+def pause():
+    pass
+
+
+def resume():
+    pass
 
 def handle_events():
     events = get_events()
@@ -27,7 +33,7 @@ def handle_events():
                 pass
             elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
                 game_framework.pop_state()
-                game_framework.push_state(main_game)
+                game_framework.change_state(main_game)
 
 
 def update():

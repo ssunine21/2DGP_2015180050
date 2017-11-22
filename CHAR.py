@@ -19,7 +19,10 @@ class CHAR:
         #state는 이미지 위치 way는 캐릭터방향
         self.state = 0
         self.way = 0
+        #frametime은 캐릭터가 너무 빨라서만든거
         self.frame = 0
+        self.frametime = 0
+        self.sidestep = 0
 
         if image == None:
             image = load_image('image\CHARACTER\character_state.png')
@@ -31,7 +34,7 @@ class CHAR:
 
         distance = main_game.MAX_SPEED_PPS * frame_time
 
-        self.x += (distance * -1)
+        self.x -= distance
 
         if self.position == self.positionX2:
             if self.x < 75:
@@ -40,12 +43,14 @@ class CHAR:
                 self.way = 0
 
         elif self.position == self.positionX1:
-            if self.x < 0:
+            if self.x <= 0:
                 self.x = 450
-            elif 300 < self.x < 375:
+                self.sidestep = 1
+            elif self.x < 375 and self.sidestep == 1:
                 self.x = 375
                 self.position = self.positionX3
                 self.way = 0
+                self.sidestep = 0
 
         elif self.position == self.positionX3:
             if self.x < 225:
@@ -55,6 +60,7 @@ class CHAR:
 
         main_game.Map1.handle_move(frame_time)
         main_game.Map2.handle_move(frame_time)
+        main_game.Map3.handle_move(frame_time)
 
         #모든 몬스터와 함정이 앞으로 당겨짐
         for Mon in main_game.Monster:
@@ -62,6 +68,12 @@ class CHAR:
 
         for Mon in main_game.Monster2:
             Mon.handle_move(frame_time)
+
+        for ATK in main_game.M2_ATTACK:
+            if ATK.ATTACK == 1:
+                ATK.attack_move(frame_time)
+            else:
+                ATK.handle_move(frame_time)
 
         for Trp in main_game.Trap:
             Trp.handle_move(frame_time)
@@ -74,7 +86,7 @@ class CHAR:
 
         distance = main_game.MAX_SPEED_PPS * frame_time
 
-        self.x += (distance * 1)
+        self.x += distance
 
         if self.position == self.positionX2:
             if self.x > 375:
@@ -83,11 +95,13 @@ class CHAR:
                 self.way = 0
 
         elif self.position == self.positionX3:
-            if self.x > 450:
+            if self.x >= 450:
                 self.x = 0
-            elif 75 < self.x < 150:
+                self.sidestep = 1
+            elif 75 < self.x and self.sidestep == 1:
                 self.x = 75
                 self.position = self.positionX1
+                self.sidestep = 0
                 self.way = 0
 
         elif self.position == self.positionX1:
@@ -98,6 +112,7 @@ class CHAR:
 
         main_game.Map1.handle_move(frame_time)
         main_game.Map2.handle_move(frame_time)
+        main_game.Map3.handle_move(frame_time)
 
         #모든 몬스터와 함정이 앞으로 당겨짐
         for Mon in main_game.Monster:
@@ -106,6 +121,12 @@ class CHAR:
         for Mon in main_game.Monster2:
             Mon.handle_move(frame_time)
 
+        for ATK in main_game.M2_ATTACK:
+            if ATK.ATTACK == 1:
+                ATK.attack_move(frame_time)
+            else:
+                ATK.handle_move(frame_time)
+
         for Trp in main_game.Trap:
             Trp.handle_move(frame_time)
 
@@ -113,19 +134,25 @@ class CHAR:
         self.frame = 0
         self.state = 3
 
+    def handle_skill(self):
+        self.y = main_game.Monster[0].y
+        self.x = main_game.Monster[0].x
+
     def update(self, frame_time):
         if self.way == 1:
             main_game.Character.handle_left_jump(frame_time)
         elif self.way == 2:
             main_game.Character.handle_right_jump(frame_time)
 
-        if self.frame < 6:
-            self.frame = (self.frame + 1)
-        else:
-            self.frame = 6
+        self.frametime += 1
+        if self.frametime % 3 == 0:
+            if self.frame < 6:
+                self.frame = (self.frame + 1)
+            else:
+                self.frame = 6
 
     def collision(self):
-        return self.x - 18, self.y - 36, self.x + 18, self.y + 36
+        return self.x - 13, self.y - 20, self.x + 13, self.y + 10
 
     def collision_box(self):
         draw_rectangle(*self.collision())

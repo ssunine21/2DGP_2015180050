@@ -1,11 +1,12 @@
 import main_game
 import game_framework
+import game_over
 from pico2d import *
 
 
 class gauge:
     def __init__(self):
-        self.x, self.y = 35, 150
+        self.x, self.y = 35, 140
         self.frame = 0
 
         #count는 HP속도 조절
@@ -22,16 +23,18 @@ class gauge:
 
         #HP속도조절
         if main_game.Level < 48:
-            if self.count % 32 == 0:
+            if self.count %16 == 0:
                 if self.frame < 99:
                     self.frame = (self.frame + 1)
                 else:
-                    game_framework.push_state(game_over)
+                    #game_framework.push_state(game_over)
+                    pass
             self.count = self.count + 1
         elif main_game.Level < 150:
-            if self.count % 32 == 0:
+            if self.count % 8 == 0:
                 if self.frame < 99:
                     self.frame = (self.frame + 1)
                 else:
-                    game_framework.quit()
+                    #game_framework.push_state(game_over)
+                    pass
             self.count = self.count + 1

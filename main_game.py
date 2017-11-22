@@ -2,10 +2,13 @@ import game_framework
 import game_over
 
 import CHAR
-import MONSTER
 import MAP
-import TRAP
 import GAUGE
+from SKILL import SKILL
+from MONSTER import MONSTER, MONSTER2
+from TRAP import TRAP
+from ATTACK import ATTACK1
+
 
 from pico2d import *
 
@@ -46,45 +49,49 @@ def get_frame_time():
 Character = None
 Monster = None
 Monster2 = None
+M2_ATTACK = None
 Trap = None
 Map1 = None
 Map2 = None
+Map3 = None
 HP_gauge = None
+skill = None
 
 
 def enter():
-    global Character, Monster, Monster2, Trap, Map1, Map2, HP_gauge
+    global Character, Monster, Monster2, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
     global current_time
 
-    open_canvas(450, 750)
-
     Character = CHAR.CHAR()
+    skill = SKILL()
 
-    Monster = [MONSTER.MONSTER() for i in range(20)]
-    Monster2 = [MONSTER.MONSTER2() for i in range(20)]
+    Monster = [MONSTER() for i in range(20)]
+    Monster2 = [MONSTER2() for i in range(20)]
+    M2_ATTACK = [ATTACK1() for i in range(10)]
 
-    Trap = [TRAP.TRAP() for i in range(13)]
+    Trap = [TRAP() for i in range(13)]
 
     Map1 = MAP.MAP1()
     Map2 = MAP.MAP2()
+    Map3 = MAP.MAP3()
     HP_gauge = GAUGE.gauge()
 
     current_time = get_time()
 
 
 def exit():
-    global Character, Monster, Monster2, Trap, Map1, Map2, HP_gauge
+    global Character, Monster, Monster2, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
 
     del(Character)
+    del(skill)
     del(Monster)
     del(Monster2)
     del(Trap)
     del(Map1)
     del(Map2)
+    del(Map3)
     del(HP_gauge)
-
-    close_canvas()
-
+    del(M2_ATTACK)
 
 def pause():
     pass
@@ -115,6 +122,9 @@ def handle_events():
             else:
                 Character.way = 2
                 Level += 1
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_x):
+            Character.handle_skill()
+            skill.skill_frame = 0
 
 
 def update():
@@ -129,11 +139,14 @@ def update():
         Mon.update()
     for Mon in Monster2:
         Mon.update()
+    for ATK in M2_ATTACK:
+        ATK.update(frame_time)
 
     for Trp in Trap:
         Trp.update()
 
     HP_gauge.update()
+    skill.update()
     # ====================================
 
 
@@ -142,6 +155,7 @@ def draw_main_scene():
     # Draw ===============================
     Map1.draw()
     Map2.draw()
+    Map3.draw()
 
     Character.draw()
 
@@ -149,18 +163,26 @@ def draw_main_scene():
         Mon.draw()
     for Mon in Monster2:
         Mon.draw()
+
+    for ATK in M2_ATTACK:
+        ATK.draw()
+
     for Trp in Trap:
         Trp.draw()
 
     HP_gauge.draw()
+    skill.draw()
 
     Character.collision_box()
 
-    for Mon in Monster:
-        Mon.collision_box()
+    #for Mon in Monster:
+    #    Mon.collision_box()
 
-    for Mon in Monster2:
-        Mon.collision_box()
+    #for Mon in Monster2:
+    #    Mon.collision_box()
+
+    #for ATK in M2_ATTACK:
+    #    ATK.collision_box()
     # ====================================
 
 
