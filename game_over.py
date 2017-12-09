@@ -1,5 +1,6 @@
 import game_framework
 import main_game
+
 from pico2d import *
 
 name = "game_over"
@@ -13,8 +14,7 @@ def enter():
 
 
 def exit():
-    global image
-    del(image)
+    pass
 
 def pause():
     pass
@@ -30,9 +30,8 @@ def handle_events():
             game_framework.quit()
         else:
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-                pass
-            elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
-                game_framework.pop_state()
+                game_framework.quit()
+            elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_r):
                 game_framework.change_state(main_game)
 
 

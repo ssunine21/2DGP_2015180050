@@ -1,13 +1,13 @@
 import game_framework
-import game_over
 
-import CHAR
+import GIRL
 import MAP
 import GAUGE
-from SKILL import SKILL, handle_skill
-from MONSTER import MONSTER, MONSTER2, MONSTER3
-from TRAP import TRAP
-from ATTACK import ATTACK1
+import MONSTER
+import TRAP
+
+from SKILL import Skill
+from ATTACK import Stage2_Attack, Stage3_Attack
 
 
 from pico2d import *
@@ -35,67 +35,75 @@ def collide(a, b):
 
 #시간================================
 current_time = 0.0
+frame_time = 0
 
 
 def get_frame_time():
-    global current_time
+    global current_time, frame_time
 
     frame_time = get_time() - current_time
     current_time += frame_time
-    return frame_time
 
-frame_time = 0
+    return frame_time
 #====================================
-Character = None
-Monster = None
-Monster2 = None
-Monster3 = None
-M2_ATTACK = None
-Trap = None
-Map1 = None
-Map2 = None
-Map3 = None
-HP_gauge = None
+
+
+girl = None
+stage1_monster = None
+stage2_monster = None
+stage3_monster = None
+
+stage2_monster_attack = None
+stage3_monster_attack = None
+
+stage2_trap = None
+
+stage1_map = None
+stage2_map = None
+stage3_map = None
+
+hp_gauge = None
+
 skill = None
 
 
 def enter():
-    global Character, Monster, Monster2, Monster3, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
-    global current_time
+    global girl, stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage1_map, stage2_map, stage3_map
+    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill, current_time, Level
 
-    Character = CHAR.CHAR()
-    skill = SKILL()
+    #다시시작 할때를 위한 객체 위치 초기화
+    MONSTER.monster_positionX = 0
+    MONSTER.monster_positionY = 0
+    TRAP.trap_positionX = 0
+    TRAP.trap_positionY = 0
+    Level = 0
 
-    Monster = [MONSTER() for i in range(20)]
-    Monster2 = [MONSTER2() for i in range(20)]
-    Monster3 = [MONSTER3() for i in range(20)]
+    girl = GIRL.Girl()
 
-    M2_ATTACK = [ATTACK1() for i in range(10)]
+    stage1_monster = [MONSTER.Stage1_Monster() for i in range(20)]
+    stage2_monster = [MONSTER.Stage2_Monster() for i in range(20)]
+    stage3_monster = [MONSTER.Stage3_Monster() for i in range(20)]
 
-    Trap = [TRAP() for i in range(13)]
+    stage2_monster_attack = [Stage2_Attack() for i in range(10)]
+    stage3_monster_attack = [Stage3_Attack() for i in range(10)]
 
-    Map1 = MAP.MAP1()
-    Map2 = MAP.MAP2()
-    Map3 = MAP.MAP3()
-    HP_gauge = GAUGE.gauge()
+    stage2_trap = [TRAP.Trap() for i in range(13)]
+
+
+    stage1_map = MAP.Map('image\MAP\MAP(STAGE1)_450x750.png', 225, 3600)
+    stage2_map = MAP.Map('image\MAP\MAP(STAGE2)_450x750.png', 225, 10800)
+    stage3_map = MAP.Map('image\MAP\MAP(STAGE3)_450x750.png', 225, 18000)
+
+    hp_gauge = GAUGE.Gauge()
+    skill = Skill()
 
     current_time = get_time()
 
 
 def exit():
-    global Character, Monster, Monster2, Monster3, Trap, Map1, Map2, Map3, HP_gauge, M2_ATTACK, skill
-
-    del(Character)
-    del(skill)
-    del(Monster)
-    del(Monster2)
-    del(Monster3)
-    del(Trap)
-    del(Map1)
-    del(Map2)
-    del(Map3)
-    del(HP_gauge)
-    del(M2_ATTACK)
+    global girl, stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage1_map, stage2_map, stage3_map
+    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill
+    pass
 
 def pause():
     pass
@@ -115,74 +123,79 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
-            if Character.way == 2:
+            if girl.way == 2:
                 pass
             else:
-                Character.way = 1
+                girl.way = 1
                 Level += 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
-            if Character.way == 1:
+            if girl.way == 1:
                 pass
             else:
-                Character.way = 2
+                girl.way = 2
                 Level += 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_x):
-            handle_skill(frame_time)
-            skill.skill_frame = 0
+            skill.handel_skill()
 
 
 def update():
-    global Monster, Monster2, Monster3, Trap, frame_time
+    global stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage2_monster_attack, stage3_monster_attack, frame_time
 
     frame_time = get_frame_time()
 
     # Update =============================
-    Character.update(frame_time)
+    girl.update(frame_time)
 
-    for Mon in Monster:
+    for Mon in stage1_monster:
         Mon.update()
-    for Mon in Monster2:
+    for Mon in stage2_monster:
         Mon.update()
-    for Mon in Monster3:
+    for Mon in stage3_monster:
         Mon.update()
 
-    for ATK in M2_ATTACK:
+    for ATK in stage2_monster_attack:
         ATK.update(frame_time)
 
-    for Trp in Trap:
+    for ATK in stage3_monster_attack:
+        ATK.update(frame_time)
+
+    for Trp in stage2_trap:
         Trp.update()
 
-    HP_gauge.update()
-    skill.update()
+    hp_gauge.update()
+    skill.update(frame_time)
     # ====================================
 
 
 def draw_main_scene():
-    global Monster, Monster2, Monster3, Trap
+    global stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage2_monster_attack, stage3_monster_attack
     # Draw ===============================
-    Map1.draw()
-    Map2.draw()
-    Map3.draw()
+    stage1_map.draw()
+    stage2_map.draw()
+    stage3_map.draw()
 
-    Character.draw()
+    girl.draw()
 
-    for Mon in Monster:
-        Mon.draw()
-    for Mon in Monster2:
-        Mon.draw()
-    for Mon in Monster3:
-        Mon.draw()
-
-    for ATK in M2_ATTACK:
+    for ATK in stage2_monster_attack:
+        ATK.draw()
+    for ATK in stage3_monster_attack:
         ATK.draw()
 
-    for Trp in Trap:
+    for Mon in stage1_monster:
+        Mon.draw()
+    for Mon in stage2_monster:
+        Mon.draw()
+    for Mon in stage3_monster:
+        Mon.draw()
+
+
+    for Trp in stage2_trap:
         Trp.draw()
 
-    HP_gauge.draw()
+    hp_gauge.draw()
     skill.draw()
 
-    Character.collision_box()
+    girl.collision_box()
 
     #for Mon in Monster:
     #    Mon.collision_box()
@@ -190,8 +203,11 @@ def draw_main_scene():
     #for Mon in Monster2:
     #    Mon.collision_box()
 
-    #for ATK in M2_ATTACK:
-    #    ATK.collision_box()
+    for Mon in stage3_monster:
+        Mon.collision_box()
+
+    for ATK in stage3_monster_attack:
+        ATK.collision_box()
     # ====================================
 
 

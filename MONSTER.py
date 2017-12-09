@@ -1,38 +1,41 @@
 from pico2d import *
 import main_game
 import random
+import ATTACK
 
 #Monster 위치값
-positionX = 0
-positionY = 0
-
-M1image = None
-M2image = None
-M3image = None
+monster_positionX = 0
+monster_positionY = 0
 
 
-class MONSTER:
+class Stage1_Monster:
+    image = None
+
     def __init__(self):
+        global monster_positionX, monster_positionY
         # Monster 위치는 x(70, 220, 370), y(150단위에서 -60)
-        global positionX, positionY, M1image
         self.x, self.y = 70, 240
-        positionX += (random.randint(1, 3) * 150)
-        positionY += (random.randint(1, 3) * 150)
-        self.x += positionX
-        self.y += positionY
+        monster_positionX += (random.randint(1, 3) * 150)
+        monster_positionY += (random.randint(1, 3) * 150)
+
+        self.x += monster_positionX
+        self.y += monster_positionY
+
         self.defaultY = self.y
         self.frame = random.randint(0, 7)
-        self.frametime = 0
 
-        if M1image == None:
-            M1image = load_image('image\MONSTER\monster1_state.png')
+        #monster_frame_speed는 몬스터 그려지는 속도 조절을 위해 만듬
+        self.monster_frame_speed = 0
+
+        if Stage1_Monster.image == None:
+            Stage1_Monster.image = load_image('image\MONSTER\monster1_state.png')
 
     def handle_move(self, frame_time):
         distance = main_game.MAX_SPEED_PPS * frame_time
 
         self.y -= distance
 
-        if main_game.Character.x % 150 == 75:
+        if main_game.girl.x % 150 == 75:
             self.defaultY -= 150
             self.y = self.defaultY
 
@@ -41,19 +44,21 @@ class MONSTER:
         while self.x > 370:
             self.x -= 450
 
-        M1image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
 
     def update(self):
-        for Mon in main_game.Monster:
-            if Mon.y < 0 :
-                main_game.Monster.remove(Mon)
+        for Mon in main_game.stage1_monster:
+            if Mon.y < 0:
+                main_game.stage1_monster.remove(Mon)
 
-            if main_game.collide(main_game.Character, Mon):
-                main_game.Monster.remove(Mon)
-                main_game.HP_gauge.frame -= 15
+            if main_game.collide(main_game.girl, Mon):
+                main_game.stage1_monster.remove(Mon)
+                main_game.hp_gauge.frame -= 15
                 main_game.skill.skill_frame += 1
-        self.frametime += 1
-        if self.frametime % 10 == 0:
+
+        self.monster_frame_speed += 1
+
+        if self.monster_frame_speed % 10 == 0:
             self.frame = (self.frame + 1) % 8
 
     def collision(self):
@@ -63,31 +68,36 @@ class MONSTER:
         draw_rectangle(*self.collision())
 
 
-class MONSTER2:
+class Stage2_Monster:
+
+    image = None
 
     def __init__(self):
+        global monster_positionX, monster_positionY
+
         #Monster 위치는 x(70, 220, 370), y(150단위에서 -60)
-        global positionX, positionY, M2image
-        self.x, self.y = 70, 1440
-        positionX += (random.randint(1, 3) * 150)
-        positionY += (random.randint(1, 4) * 150)
-        self.x += positionX
-        self.y += positionY
+        self.x, self.y = 70, 390
+        monster_positionX += (random.randint(1, 3) * 150)
+        monster_positionY += (random.randint(1, 4) * 150)
+
+        self.x += monster_positionX
+        self.y += monster_positionY
         self.defaultY = self.y
         self.attack = 0
-        #frametimee은 몬스터가 너무 빨라서 만든거
         self.frame = random.randint(0, 7)
-        self.frametime = 0
 
-        if M2image == None:
-            M2image = load_image('image\MONSTER\monster2_state.png')
+        #monster_frame_speed는 몬스터 그려지는 속도 조절을 위해 만듬
+        self.monster_frame_speed = 0
+
+        if Stage2_Monster.image == None:
+            Stage2_Monster.image = load_image('image\MONSTER\monster2_state.png')
 
     def handle_move(self, frame_time):
         distance = main_game.MAX_SPEED_PPS * frame_time
 
         self.y -= distance
 
-        if main_game.Character.x % 150 == 75:
+        if main_game.girl.x % 150 == 75:
             self.defaultY -= 150
             self.y = self.defaultY
 
@@ -96,22 +106,22 @@ class MONSTER2:
         while self.x > 370:
             self.x -= 450
 
-        M2image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
 
     def update(self):
-        for Mon in main_game.Monster2:
+        for Mon in main_game.stage2_monster:
             if Mon.y < 0:
-                main_game.Monster2.remove(Mon)
+                main_game.stage2_monster.remove(Mon)
 
-            if main_game.collide(main_game.Character, Mon):
-                main_game.Monster2.remove(Mon)
-                for ATK in main_game.M2_ATTACK:
+            if main_game.collide(main_game.girl, Mon):
+                main_game.stage2_monster.remove(Mon)
+                for ATK in main_game.stage2_monster_attack:
                     if ATK.y == Mon.y:
-                        main_game.M2_ATTACK.remove(ATK)
-                main_game.HP_gauge.frame -= 15
+                        main_game.stage2_monster_attack.remove(ATK)
+                main_game.hp_gauge.frame -= 15
                 main_game.skill.skill_frame += 1
-        self.frametime += 1
-        if self.frametime % 10 == 0:
+        self.monster_frame_speed += 1
+        if self.monster_frame_speed % 10 == 0:
             self.frame = (self.frame + 1) % 8
 
     def collision(self):
@@ -121,32 +131,37 @@ class MONSTER2:
         draw_rectangle(*self.collision())
 
 
-class MONSTER3:
+class Stage3_Monster:
+
+    image = None
 
     def __init__(self):
+        global monster_positionX, monster_positionY
         #Monster 위치는 x(70, 220, 370), y(150단위에서 -60)
-        global positionX, positionY, M3image
-        self.x, self.y = 60, 2640
-        positionX += (random.randint(1, 3) * 150)
-        positionY += (random.randint(1, 3) * 150)
-        self.x += positionX
-        self.y += positionY
+        self.x, self.y = 60, 540
+        monster_positionX += (random.randint(1, 3) * 150)
+        monster_positionY += (random.randint(1, 3) * 150)
+        self.x += monster_positionX
+        self.y += monster_positionY
         self.defaultY = self.y
         self.attack = 0
-        #frametimee은 몬스터가 너무 빨라서 만든거
         self.frame = random.randint(0, 7)
+
+        #Stage3_Monster는 걷는 상태와 무기를 휘두르는 상태로 나뉨
         self.state = 1
-        self.frametime = 0
 
-        if M3image == None:
-            M3image = load_image('image\MONSTER\monster3_state.png')
+        #monster_frame_speed는 몬스터 그려지는 속도 조절을 위해 만듬
+        self.monster_frame_speed = 0
+
+        if Stage3_Monster.image == None:
+            Stage3_Monster.image = load_image('image\MONSTER\monster3_state.png')
 
     def handle_move(self, frame_time):
         distance = main_game.MAX_SPEED_PPS * frame_time
 
         self.y -= distance
 
-        if main_game.Character.x % 150 == 75:
+        if main_game.girl.x % 150 == 75:
             self.defaultY -= 150
             self.y = self.defaultY
 
@@ -155,27 +170,27 @@ class MONSTER3:
         while self.x > 370:
             self.x -= 450
 
-        M3image.clip_draw(self.frame * 140, self.state * 140, 140, 140, self.x, self.y)
+        self.image.clip_draw(self.frame * 140, self.state * 140, 140, 140, self.x, self.y)
 
     def update(self):
-        for Mon in main_game.Monster3:
+        for Mon in main_game.stage3_monster:
             if Mon.y < 0:
-                main_game.Monster3.remove(Mon)
+                main_game.stage3_monster.remove(Mon)
 
-            if main_game.collide(main_game.Character, Mon):
-                main_game.Monster3.remove(Mon)
-                for ATK in main_game.M2_ATTACK:
+            if main_game.collide(main_game.girl, Mon):
+                main_game.stage3_monster.remove(Mon)
+                for ATK in main_game.stage3_monster_attack:
                     if ATK.y == Mon.y:
-                        main_game.M2_ATTACK.remove(ATK)
-                main_game.HP_gauge.frame -= 15
+                        main_game.stage3_monster_attack.remove(ATK)
+                main_game.hp_gauge.frame -= 15
                 main_game.skill.skill_frame += 1
-        self.frametime += 1
-        if self.frametime % 28 == 0:
+
+        self.monster_frame_speed += 1
+        if self.monster_frame_speed % 28 == 0:
             self.frame = (self.frame + 1) % 8
 
     def collision(self):
-        return self.x - 22, self.y -35, self.x + 22, self.y + 35
+        return self.x - 22, self.y -45, self.x + 22, self.y + 35
 
     def collision_box(self):
         draw_rectangle(*self.collision())
-

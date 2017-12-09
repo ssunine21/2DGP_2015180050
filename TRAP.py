@@ -1,23 +1,25 @@
-import main_game
 from pico2d import *
+
+import main_game
 import random
 import game_framework
+import game_over
 
 #Trap 위치값
-TRAP_positionX = 0
-TRAP_positionY = 0
+trap_positionX = 0
+trap_positionY = 0
 
 image = None
 
-class TRAP:
+class Trap:
 
     def __init__(self):
-        global TRAP_positionX, TRAP_positionY, image
+        global trap_positionX, trap_positionY, image
         self.x, self.y = 75, 7275
-        TRAP_positionX += (random.randint(1, 3) * 150)
-        TRAP_positionY += (random.randint(1, 5) * 150)
-        self.x += TRAP_positionX
-        self.y += TRAP_positionY
+        trap_positionX += (random.randint(1, 3) * 150)
+        trap_positionY += (random.randint(1, 5) * 150)
+        self.x += trap_positionX
+        self.y += trap_positionY
         self.defaultY = self.y
         self.frame = 0
 
@@ -29,7 +31,7 @@ class TRAP:
 
         self.y -= distance
 
-        if main_game.Character.x % 150 == 75:
+        if main_game.girl.x % 150 == 75:
             self.defaultY -= 150
             self.y = self.defaultY
 
@@ -41,13 +43,13 @@ class TRAP:
         image.draw(self.x, self.y)
 
     def update(self):
-        for Trp in main_game.Trap:
-            for Mon in main_game.Monster2:
+        for Trp in main_game.stage2_trap:
+            for Mon in main_game.stage2_monster:
                 if main_game.collide(Trp, Mon):
-                    main_game.Trap.remove(Trp)
-            if main_game.collide(main_game.Character, Trp):
+                    main_game.stage2_trap.remove(Trp)
+            if main_game.collide(main_game.girl, Trp):
                 pass
-                #game_framework.quit()
+                game_framework.push_state(game_over)
 
     def collision(self):
         return self.x - 15, self.y -15, self.x + 15, self.y + 15
