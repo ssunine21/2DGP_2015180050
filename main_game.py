@@ -5,6 +5,7 @@ import MAP
 import GAUGE
 import MONSTER
 import TRAP
+import ITEM
 
 from SKILL import Skill
 from ATTACK import Stage2_Attack, Stage3_Attack
@@ -65,17 +66,22 @@ stage3_map = None
 hp_gauge = None
 
 skill = None
+protected = None
 
 
 def enter():
     global girl, stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage1_map, stage2_map, stage3_map
-    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill, current_time, Level
+    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill, current_time, Level, protected
 
     #다시시작 할때를 위한 객체 위치 초기화
     MONSTER.monster_positionX = 0
     MONSTER.monster_positionY = 0
     TRAP.trap_positionX = 0
     TRAP.trap_positionY = 0
+    ITEM.protected_positionX = 0
+    ITEM.protected_positionY = 0
+    ITEM.protect_State = 0
+
     Level = 0
 
     girl = GIRL.Girl()
@@ -85,17 +91,18 @@ def enter():
     stage3_monster = [MONSTER.Stage3_Monster() for i in range(20)]
 
     stage2_monster_attack = [Stage2_Attack() for i in range(10)]
-    stage3_monster_attack = [Stage3_Attack() for i in range(10)]
+    stage3_monster_attack = [Stage3_Attack() for i in range(15)]
 
     stage2_trap = [TRAP.Trap() for i in range(13)]
 
-
-    stage1_map = MAP.Map('image\MAP\MAP(STAGE1)_450x750.png', 225, 3600)
-    stage2_map = MAP.Map('image\MAP\MAP(STAGE2)_450x750.png', 225, 10800)
-    stage3_map = MAP.Map('image\MAP\MAP(STAGE3)_450x750.png', 225, 18000)
+    stage2_map = MAP.Map('image\MAP\MAP(STAGE2)_450x750.png', 'music\stage2BGM.mp3', 225, 10800)
+    stage3_map = MAP.Map('image\MAP\MAP(STAGE3)_450x750.png', 'music\stage3BGM.mp3', 225, 18000)
+    stage1_map = MAP.Map('image\MAP\MAP(STAGE1)_450x750.png', 'music\stage1BGM.mp3', 225, 3600)
 
     hp_gauge = GAUGE.Gauge()
     skill = Skill()
+
+    protected = [ITEM.Protected() for i in range(3)]
 
     current_time = get_time()
 
@@ -139,12 +146,13 @@ def handle_events():
 
 
 def update():
-    global stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage2_monster_attack, stage3_monster_attack, frame_time
+    global stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage2_monster_attack, stage3_monster_attack, frame_time, stage1_map
 
     frame_time = get_frame_time()
 
     # Update =============================
     girl.update(frame_time)
+    stage1_map.update()
 
     for Mon in stage1_monster:
         Mon.update()
@@ -164,6 +172,9 @@ def update():
 
     hp_gauge.update()
     skill.update(frame_time)
+
+    for PROTECT in protected:
+        PROTECT.update()
     # ====================================
 
 
@@ -188,12 +199,14 @@ def draw_main_scene():
     for Mon in stage3_monster:
         Mon.draw()
 
-
     for Trp in stage2_trap:
         Trp.draw()
 
     hp_gauge.draw()
     skill.draw()
+
+    for PROTECT in protected:
+        PROTECT.draw()
 
     girl.collision_box()
 
@@ -203,11 +216,11 @@ def draw_main_scene():
     #for Mon in Monster2:
     #    Mon.collision_box()
 
-    for Mon in stage3_monster:
-        Mon.collision_box()
+    #for Mon in stage3_monster:
+    #    Mon.collision_box()
 
-    for ATK in stage3_monster_attack:
-        ATK.collision_box()
+    #for ATK in stage3_monster_attack:
+    #    ATK.collision_box()
     # ====================================
 
 

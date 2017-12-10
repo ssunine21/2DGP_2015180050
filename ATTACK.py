@@ -3,13 +3,14 @@ import main_game
 import game_framework
 import game_over
 import random
-import MONSTER
+import ITEM
 
 monster_Counter = 0
 
 
 class Stage2_Attack:
     image = None
+    stage2_attack_sound = None
 
     def __init__(self):
         global monster_Counter
@@ -23,6 +24,13 @@ class Stage2_Attack:
 
         if Stage2_Attack.image == None:
             Stage2_Attack.image = load_image('image\MONSTER_ATTACK\monster2_attack.png')
+
+        if Stage2_Attack.stage2_attack_sound == None:
+            Stage2_Attack.stage2_attack_sound = load_wav('music\stage2_monster_attack.wav')
+            Stage2_Attack.stage2_attack_sound.set_volume(10)
+
+    def eat(self):
+        self.stage2_attack_sound.play()
 
     def handle_move(self, frame_time):
         distance = main_game.MAX_SPEED_PPS * frame_time
@@ -47,13 +55,18 @@ class Stage2_Attack:
     def update(self, frame_time):
         for ATK in main_game.stage2_monster_attack:
             if main_game.collide(main_game.girl, ATK):
+                ATK.eat()
                 ATK.ATTACK = 1
         for ATK in main_game.stage2_monster_attack:
             if ATK.ATTACK == 1:
                 ATK.y -= main_game.MAX_SPEED_PPS * frame_time * 0.05
                 if self.attack_collide(ATK, main_game.girl):
-                    game_framework.push_state(game_over)
-                    pass
+                    if ITEM.protect_State == 1:
+                        ITEM.protect_State = 0
+                        main_game.stage2_monster_attack.remove(ATK)
+                    else:
+                        game_framework.push_state(game_over)
+                        pass
 
     def collision(self):
         return self.x - 2, self.y - 350, self.x + 2, self.y + 20
@@ -79,6 +92,7 @@ class Stage2_Attack:
 
 class Stage3_Attack:
     image = None
+    stage3_attack_sound = None
 
     def __init__(self):
         global monster_Counter
@@ -92,6 +106,13 @@ class Stage3_Attack:
 
         if Stage3_Attack.image == None:
             Stage3_Attack.image = load_image('image\MONSTER_ATTACK\monster3_attack.png')
+
+        if Stage3_Attack.stage3_attack_sound == None:
+            Stage3_Attack.stage3_attack_sound = load_wav('music\stage3_monster_attack.wav')
+            Stage3_Attack.stage3_attack_sound.set_volume(50)
+
+    def eat(self):
+        self.stage3_attack_sound.play()
 
     def handle_move(self, frame_time):
         distance = main_game.MAX_SPEED_PPS * frame_time
@@ -116,14 +137,20 @@ class Stage3_Attack:
     def update(self, frame_time):
         for ATK in main_game.stage3_monster_attack:
             if main_game.collide(main_game.girl, ATK):
+                ATK.eat()
                 ATK.ATTACK = 1
 
         for ATK in main_game.stage3_monster_attack:
             if ATK.ATTACK == 1:
                 ATK.y -= main_game.MAX_SPEED_PPS * frame_time * 0.05
                 if self.attack_collide(ATK, main_game.girl):
-                    game_framework.push_state(game_over)
-                    pass
+                    if ITEM.protect_State == 1:
+                        ITEM.protect_State = 0
+                        main_game.stage3_monster_attack.remove(ATK)
+                    else:
+                        game_framework.push_state(game_over)
+                        pass
+
 
     def collision(self):
         return self.x - 2, self.y - 350, self.x + 2, self.y + 20

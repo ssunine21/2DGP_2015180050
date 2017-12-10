@@ -1,7 +1,6 @@
 from pico2d import *
 import main_game
 import random
-import ATTACK
 
 #Monster 위치값
 monster_positionX = 0
@@ -53,6 +52,8 @@ class Stage1_Monster:
 
             if main_game.collide(main_game.girl, Mon):
                 main_game.stage1_monster.remove(Mon)
+                main_game.girl.eat(Mon)
+
                 main_game.hp_gauge.frame -= 15
                 main_game.skill.skill_frame += 1
 
@@ -115,9 +116,12 @@ class Stage2_Monster:
 
             if main_game.collide(main_game.girl, Mon):
                 main_game.stage2_monster.remove(Mon)
+                main_game.girl.eat(Mon)
+
                 for ATK in main_game.stage2_monster_attack:
                     if ATK.y == Mon.y:
                         main_game.stage2_monster_attack.remove(ATK)
+
                 main_game.hp_gauge.frame -= 15
                 main_game.skill.skill_frame += 1
         self.monster_frame_speed += 1
@@ -179,6 +183,8 @@ class Stage3_Monster:
 
             if main_game.collide(main_game.girl, Mon):
                 main_game.stage3_monster.remove(Mon)
+                main_game.girl.eat(Mon)
+                
                 for ATK in main_game.stage3_monster_attack:
                     if ATK.y == Mon.y:
                         main_game.stage3_monster_attack.remove(ATK)

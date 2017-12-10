@@ -2,6 +2,7 @@ from pico2d import *
 
 import main_game
 import random
+import ITEM
 import game_framework
 import game_over
 
@@ -48,8 +49,12 @@ class Trap:
                 if main_game.collide(Trp, Mon):
                     main_game.stage2_trap.remove(Trp)
             if main_game.collide(main_game.girl, Trp):
-                pass
-                game_framework.push_state(game_over)
+                if ITEM.protect_State == 1:
+                    ITEM.protect_State = 0
+                    main_game.stage2_trap.remove(Trp)
+                else:
+                    game_framework.push_state(game_over)
+                    pass
 
     def collision(self):
         return self.x - 15, self.y -15, self.x + 15, self.y + 15

@@ -7,6 +7,7 @@ class Girl:
 
     LEFT_RUN, RIGHT_RUN = 0, 1
     image = None
+    eat_sound = None
 
     def __init__(self):
         self.x, self.y = 225, 70
@@ -25,6 +26,13 @@ class Girl:
 
         if Girl.image == None:
             Girl.image = load_image('image\CHARACTER\character_state.png')
+
+        if Girl.eat_sound == None:
+            Girl.eat_sound = load_wav('music\sword1.wav')
+            Girl.eat_sound.set_volume(50)
+
+    def eat(self, Mon):
+        self.eat_sound.play()
 
     def draw(self):
         self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)

@@ -32,3 +32,6 @@ def handle_move_GIRL(frame_time):
 
     for Trp in main_game.stage2_trap:
         Trp.handle_move(frame_time)
+
+    for PROTECT in main_game.protected:
+        PROTECT.handle_move(frame_time)
