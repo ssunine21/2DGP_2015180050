@@ -29,7 +29,7 @@ class Girl:
 
         if Girl.eat_sound == None:
             Girl.eat_sound = load_wav('music\sword1.wav')
-            Girl.eat_sound.set_volume(50)
+            Girl.eat_sound.set_volume(20)
 
     def eat(self, Mon):
         self.eat_sound.play()

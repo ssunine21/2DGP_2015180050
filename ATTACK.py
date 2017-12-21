@@ -27,7 +27,7 @@ class Stage2_Attack:
 
         if Stage2_Attack.stage2_attack_sound == None:
             Stage2_Attack.stage2_attack_sound = load_wav('music\stage2_monster_attack.wav')
-            Stage2_Attack.stage2_attack_sound.set_volume(10)
+            Stage2_Attack.stage2_attack_sound.set_volume(5)
 
     def eat(self):
         self.stage2_attack_sound.play()
@@ -109,7 +109,7 @@ class Stage3_Attack:
 
         if Stage3_Attack.stage3_attack_sound == None:
             Stage3_Attack.stage3_attack_sound = load_wav('music\stage3_monster_attack.wav')
-            Stage3_Attack.stage3_attack_sound.set_volume(50)
+            Stage3_Attack.stage3_attack_sound.set_volume(20)
 
     def eat(self):
         self.stage3_attack_sound.play()

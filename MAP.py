@@ -9,7 +9,7 @@ class Map:
         self.image = load_image(mapcourse)
         self.stageBGM = load_music(bgmcourse)
 
-        self.stageBGM.set_volume(50)
+        self.stageBGM.set_volume(20)
         self.stageBGM.repeat_play()
 
     def draw(self):

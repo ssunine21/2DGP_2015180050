@@ -52,7 +52,9 @@ class Protected:
     def update(self):
         global protect_State
         for PROTECT in main_game.protected:
-            if main_game.collide(main_game.girl, PROTECT):
+            if protect_State == 1:
+                pass
+            elif main_game.collide(main_game.girl, PROTECT):
                 main_game.protected.remove(PROTECT)
                 protect_State = 1
 
