@@ -1,6 +1,6 @@
 import game_framework
 
-import GIRL
+import Character
 import MAP
 import GAUGE
 import MONSTER
@@ -84,7 +84,7 @@ def enter():
 
     Level = 0
 
-    girl = GIRL.Girl()
+    girl = Character.Character()
 
     stage1_monster = [MONSTER.Stage1_Monster() for i in range(20)]
     stage2_monster = [MONSTER.Stage2_Monster() for i in range(20)]

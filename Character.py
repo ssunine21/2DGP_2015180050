@@ -1,9 +1,10 @@
 import main_game
+import choice_state
 from handle_Move_All import handle_move_GIRL
 from pico2d import *
 
 
-class Girl:
+class Character:
 
     LEFT_RUN, RIGHT_RUN = 0, 1
     image = None
@@ -24,12 +25,15 @@ class Girl:
         #sidestep는 밖으로 나갈 때 캐릭터의 자연스러운 움직임을 위해서
         self.sidestep = 0
 
-        if Girl.image == None:
-            Girl.image = load_image('image\CHARACTER\character_state.png')
+        if Character.image == None:
+            if choice_state.CHAR_choice == 0:
+                Character.image = load_image('image\CHARACTER\CharPSD.png')
+            elif choice_state.CHAR_choice == 1:
+                Character.image = load_image('image\CHARACTER\girl_state.png')
 
-        if Girl.eat_sound == None:
-            Girl.eat_sound = load_wav('music\sword1.wav')
-            Girl.eat_sound.set_volume(20)
+        if Character.eat_sound == None:
+            Character.eat_sound = load_wav('music\sword1.wav')
+            Character.eat_sound.set_volume(20)
 
     def eat(self, Mon):
         self.eat_sound.play()
