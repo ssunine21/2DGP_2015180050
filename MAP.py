@@ -24,6 +24,10 @@ class Map:
             self.changeMusic(main_game.stage2_map, main_game.stage3_map)
             main_game.Level += 1
 
+        if main_game.Level == 140:
+            self.changeMusic(main_game.stage3_map, main_game.stage4_map)
+            main_game.Level += 1
+
     def changeMusic(self, Amusic, Bmusic):
         Amusic.stageBGM.stop()
         Bmusic.stageBGM.repeat_play()

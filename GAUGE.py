@@ -1,6 +1,8 @@
 import main_game
 import game_framework
+import victory_state
 import game_over
+import title_state
 from pico2d import *
 
 
@@ -23,23 +25,52 @@ class Gauge:
 
         #HP속도조절
         if main_game.Level < 48:
-            if self.count % 25 == 0:
+            if self.count % 20 == 0:
 
                 if self.frame < 100:
                     self.frame = (self.frame + 1)
                 else:
-                    #game_framework.push_state(game_over)
+                    title_state.gameoverMusic()
+                    game_framework.push_state(game_over)
                     pass
 
             self.count = self.count + 1
 
-        elif main_game.Level < 250:
+        elif main_game.Level < 96:
             if self.count % 12 == 0:
 
                 if self.frame < 100:
                     self.frame = (self.frame + 1)
                 else:
-                    #game_framework.push_state(game_over)
+                    title_state.gameoverMusic()
+                    game_framework.push_state(game_over)
                     pass
 
             self.count = self.count + 1
+
+        elif main_game.Level < 144:
+            if self.count % 10 == 0:
+
+                if self.frame < 100:
+                    self.frame = (self.frame + 1)
+                else:
+                    title_state.gameoverMusic()
+                    game_framework.push_state(game_over)
+                    pass
+
+            self.count = self.count + 1
+
+        elif main_game.Level < 190:
+            if self.count % 8 == 0:
+
+                if self.frame < 100:
+                    self.frame = (self.frame + 1)
+                else:
+                    title_state.gameoverMusic()
+                    game_framework.push_state(game_over)
+                    pass
+
+            self.count = self.count + 1
+
+        elif main_game.Level == 194:
+            game_framework.push_state(victory_state)

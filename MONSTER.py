@@ -1,6 +1,10 @@
 from pico2d import *
 import main_game
+import game_framework
 import random
+import game_over
+import ITEM
+import title_state
 
 #Monster 위치값
 monster_positionX = 0
@@ -51,10 +55,11 @@ class Stage1_Monster:
                 main_game.stage1_monster.remove(Mon)
 
             if main_game.collide(main_game.girl, Mon):
+                main_game.score += 550
                 main_game.stage1_monster.remove(Mon)
                 main_game.girl.eat(Mon)
 
-                main_game.hp_gauge.frame -= 15
+                main_game.hp_gauge.frame -= 13
                 main_game.skill.skill_frame += 1
 
         self.monster_frame_speed += 1
@@ -115,6 +120,7 @@ class Stage2_Monster:
                 main_game.stage2_monster.remove(Mon)
 
             if main_game.collide(main_game.girl, Mon):
+                main_game.score += 750
                 main_game.stage2_monster.remove(Mon)
                 main_game.girl.eat(Mon)
 
@@ -122,7 +128,7 @@ class Stage2_Monster:
                     if ATK.y == Mon.y:
                         main_game.stage2_monster_attack.remove(ATK)
 
-                main_game.hp_gauge.frame -= 15
+                main_game.hp_gauge.frame -= 10
                 main_game.skill.skill_frame += 1
         self.monster_frame_speed += 1
         if self.monster_frame_speed % 10 == 0:
@@ -182,13 +188,14 @@ class Stage3_Monster:
                 main_game.stage3_monster.remove(Mon)
 
             if main_game.collide(main_game.girl, Mon):
+                main_game.score += 950
                 main_game.stage3_monster.remove(Mon)
                 main_game.girl.eat(Mon)
                 
                 for ATK in main_game.stage3_monster_attack:
                     if ATK.y == Mon.y:
                         main_game.stage3_monster_attack.remove(ATK)
-                main_game.hp_gauge.frame -= 15
+                main_game.hp_gauge.frame -= 7
                 main_game.skill.skill_frame += 1
 
         self.monster_frame_speed += 1
@@ -200,3 +207,68 @@ class Stage3_Monster:
 
     def collision_box(self):
         draw_rectangle(*self.collision())
+
+
+class Stage4_Monster:
+    image = None
+
+    def __init__(self):
+        global monster_positionX, monster_positionY
+        # Monster 위치는 x(70, 220, 370), y(150단위에서 -60)
+        self.x, self.y = 70, 690
+        monster_positionX += (random.randint(1, 3) * 150)
+        monster_positionY += (random.randint(1, 2) * 150)
+
+        self.x += monster_positionX
+        self.y += monster_positionY
+
+        self.defaultY = self.y
+        self.frame = random.randint(0, 6)
+
+        #monster_frame_speed는 몬스터 그려지는 속도 조절을 위해 만듬
+        self.monster_frame_speed = 0
+
+        if Stage4_Monster.image == None:
+            Stage4_Monster.image = load_image('image\MONSTER\monster4_state.png')
+
+    def handle_move(self, frame_time):
+        distance = main_game.MAX_SPEED_PPS * frame_time
+
+        self.y -= distance
+
+        if main_game.girl.x % 150 == 75:
+            self.defaultY -= 150
+            self.y = self.defaultY
+
+
+    def update(self):
+        for Mon in main_game.stage4_monster:
+            if Mon.y < 0:
+                main_game.stage4_monster.remove(Mon)
+
+            if main_game.collide(main_game.girl, Mon):
+                if ITEM.protect_State >= 1:
+                    ITEM.protect_State = ITEM.protect_State - 1
+                    main_game.stage4_monster.remove(Mon)
+                else:
+                    title_state.gameoverMusic()
+                    game_framework.push_state(game_over)
+
+        self.monster_frame_speed += 1
+
+        if self.monster_frame_speed % 10 == 0:
+            self.frame = (self.frame + 1) % 7
+
+    def collision(self):
+        return self.x - 22, self.y - 35, self.x + 22, self.y + 35
+
+    def collision_box(self):
+        draw_rectangle(*self.collision())
+
+    def draw(self):
+        # x와 y 위치를 랜덤으로 넣기
+        while self.x > 370:
+            self.x -= 450
+
+        if main_game.Level % 3 == 0:
+            self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)

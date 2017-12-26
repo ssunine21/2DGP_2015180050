@@ -2,6 +2,7 @@ from pico2d import *
 import main_game
 import game_framework
 import game_over
+import title_state
 import random
 import ITEM
 
@@ -61,10 +62,11 @@ class Stage2_Attack:
             if ATK.ATTACK == 1:
                 ATK.y -= main_game.MAX_SPEED_PPS * frame_time * 0.05
                 if self.attack_collide(ATK, main_game.girl):
-                    if ITEM.protect_State == 1:
-                        ITEM.protect_State = 0
+                    if ITEM.protect_State >= 1:
+                        ITEM.protect_State = ITEM.protect_State - 1
                         main_game.stage2_monster_attack.remove(ATK)
                     else:
+                        title_state.gameoverMusic()
                         game_framework.push_state(game_over)
                         pass
 
@@ -144,10 +146,11 @@ class Stage3_Attack:
             if ATK.ATTACK == 1:
                 ATK.y -= main_game.MAX_SPEED_PPS * frame_time * 0.05
                 if self.attack_collide(ATK, main_game.girl):
-                    if ITEM.protect_State == 1:
-                        ITEM.protect_State = 0
+                    if ITEM.protect_State >= 1:
+                        ITEM.protect_State = ITEM.protect_State - 1
                         main_game.stage3_monster_attack.remove(ATK)
                     else:
+                        title_state.gameoverMusic()
                         game_framework.push_state(game_over)
                         pass
 

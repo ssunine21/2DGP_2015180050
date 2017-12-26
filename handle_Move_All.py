@@ -8,6 +8,7 @@ def handle_move_GIRL(frame_time):
     main_game.stage1_map.handle_move(frame_time)
     main_game.stage2_map.handle_move(frame_time)
     main_game.stage3_map.handle_move(frame_time)
+    main_game.stage4_map.handle_move(frame_time)
 
     for Mon in main_game.stage1_monster:
         Mon.handle_move(frame_time)
@@ -16,6 +17,9 @@ def handle_move_GIRL(frame_time):
         Mon.handle_move(frame_time)
 
     for Mon in main_game.stage3_monster:
+        Mon.handle_move(frame_time)
+
+    for Mon in main_game.stage4_monster:
         Mon.handle_move(frame_time)
 
     for ATK in main_game.stage2_monster_attack:

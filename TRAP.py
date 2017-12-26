@@ -5,6 +5,7 @@ import random
 import ITEM
 import game_framework
 import game_over
+import title_state
 
 #Trap 위치값
 trap_positionX = 0
@@ -49,10 +50,11 @@ class Trap:
                 if main_game.collide(Trp, Mon):
                     main_game.stage2_trap.remove(Trp)
             if main_game.collide(main_game.girl, Trp):
-                if ITEM.protect_State == 1:
-                    ITEM.protect_State = 0
+                if ITEM.protect_State >= 1:
+                    ITEM.protect_State = ITEM.protect_State - 1
                     main_game.stage2_trap.remove(Trp)
                 else:
+                    title_state.gameoverMusic()
                     game_framework.push_state(game_over)
                     pass
 

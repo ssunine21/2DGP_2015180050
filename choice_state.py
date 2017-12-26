@@ -39,7 +39,7 @@ def handle_events():
             game_framework.quit()
         else:
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-                game_framework.quit()
+                game_framework.pop_state()
             elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
                 title_state.selectMusic()
                 CHAR_choice = 0

@@ -6,6 +6,7 @@ import GAUGE
 import MONSTER
 import TRAP
 import ITEM
+import stop_state
 
 from SKILL import Skill
 from ATTACK import Stage2_Attack, Stage3_Attack
@@ -20,6 +21,9 @@ MAX_SPEED_PPS = 1000
 
 #난이도
 Level = 0
+
+#점수
+score = 0
 
 
 def collide(a, b):
@@ -53,6 +57,7 @@ girl = None
 stage1_monster = None
 stage2_monster = None
 stage3_monster = None
+stage4_monster = None
 
 stage2_monster_attack = None
 stage3_monster_attack = None
@@ -62,6 +67,7 @@ stage2_trap = None
 stage1_map = None
 stage2_map = None
 stage3_map = None
+stage4_map = None
 
 hp_gauge = None
 
@@ -70,8 +76,8 @@ protected = None
 
 
 def enter():
-    global girl, stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage1_map, stage2_map, stage3_map
-    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill, current_time, Level, protected
+    global girl, stage1_monster, stage2_monster, stage3_monster, stage4_monster, stage2_trap, stage1_map, stage2_map, stage3_map
+    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill, current_time, Level, protected, stage4_map, score
 
     #다시시작 할때를 위한 객체 위치 초기화
     MONSTER.monster_positionX = 0
@@ -83,33 +89,34 @@ def enter():
     ITEM.protect_State = 0
 
     Level = 0
+    score = 0
 
     girl = Character.Character()
 
     stage1_monster = [MONSTER.Stage1_Monster() for i in range(20)]
     stage2_monster = [MONSTER.Stage2_Monster() for i in range(20)]
     stage3_monster = [MONSTER.Stage3_Monster() for i in range(20)]
+    stage4_monster = [MONSTER.Stage4_Monster() for i in range(40)]
 
     stage2_monster_attack = [Stage2_Attack() for i in range(10)]
     stage3_monster_attack = [Stage3_Attack() for i in range(15)]
 
     stage2_trap = [TRAP.Trap() for i in range(13)]
 
-    stage2_map = MAP.Map('image\MAP\MAP(STAGE2)_450x750.png', 'music\stage2BGM.mp3', 225, 10800)
+    stage4_map = MAP.Map('image\MAP\MAP(STAGE4)_450x1200.png', 'music\stage4BGM.mp3', 225, 25425)
     stage3_map = MAP.Map('image\MAP\MAP(STAGE3)_450x750.png', 'music\stage3BGM.mp3', 225, 18000)
+    stage2_map = MAP.Map('image\MAP\MAP(STAGE2)_450x750.png', 'music\stage2BGM.mp3', 225, 10800)
     stage1_map = MAP.Map('image\MAP\MAP(STAGE1)_450x750.png', 'music\stage1BGM.mp3', 225, 3600)
 
     hp_gauge = GAUGE.Gauge()
     skill = Skill()
 
-    protected = [ITEM.Protected() for i in range(3)]
+    protected = [ITEM.Protected() for i in range(5)]
 
     current_time = get_time()
 
 
 def exit():
-    global girl, stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage1_map, stage2_map, stage3_map
-    global hp_gauge, stage2_monster_attack, stage3_monster_attack, skill
     pass
 
 def pause():
@@ -121,33 +128,40 @@ def resume():
 
 
 def handle_events():
-    global Level, frame_time
+    global Level, frame_time, score, hp_gauge, skill
 
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
+            game_framework.push_state(stop_state)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
             if girl.way == 2:
                 pass
             else:
                 girl.way = 1
                 Level += 1
+                score += 60
+                if Level > 144:
+                    hp_gauge.frame -= 6
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
             if girl.way == 1:
                 pass
             else:
                 girl.way = 2
                 Level += 1
+                score += 60
+                if Level > 144:
+                    hp_gauge.frame -= 6
+
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_x):
-            skill.handel_skill()
+            skill.handle_skill()
 
 
 def update():
-    global stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage2_monster_attack, stage3_monster_attack, frame_time, stage1_map
-
+    global stage1_monster, stage2_monster, stage3_monster, stage4_monster, stage2_trap, stage1_map
+    global stage2_monster_attack, stage3_monster_attack, frame_time, protected
     frame_time = get_frame_time()
 
     # Update =============================
@@ -159,6 +173,8 @@ def update():
     for Mon in stage2_monster:
         Mon.update()
     for Mon in stage3_monster:
+        Mon.update()
+    for Mon in stage4_monster:
         Mon.update()
 
     for ATK in stage2_monster_attack:
@@ -179,11 +195,13 @@ def update():
 
 
 def draw_main_scene():
-    global stage1_monster, stage2_monster, stage3_monster, stage2_trap, stage2_monster_attack, stage3_monster_attack
+    global stage1_monster, stage2_monster, stage3_monster, stage4_monster, stage2_trap, stage2_monster_attack
+    global stage3_monster_attack, protected
     # Draw ===============================
     stage1_map.draw()
     stage2_map.draw()
     stage3_map.draw()
+    stage4_map.draw()
 
     girl.draw()
 
@@ -198,6 +216,8 @@ def draw_main_scene():
         Mon.draw()
     for Mon in stage3_monster:
         Mon.draw()
+    for Mon in stage4_monster:
+        Mon.draw()
 
     for Trp in stage2_trap:
         Trp.draw()
@@ -208,7 +228,7 @@ def draw_main_scene():
     for PROTECT in protected:
         PROTECT.draw()
 
-    girl.collision_box()
+    #girl.collision_box()
 
     #for Mon in Monster:
     #    Mon.collision_box()

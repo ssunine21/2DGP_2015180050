@@ -1,5 +1,7 @@
 from pico2d import *
+import choice_state
 import main_game
+import ITEM
 
 
 class Skill:
@@ -18,37 +20,20 @@ class Skill:
         self.image.clip_draw(self.skill_frame * 60, 0, 60, 60, self.x, self.y)
 
     def update(self, frame_time):
-        if self.skill_frame > 5:
+        if self.skill_frame >= 5:
             self.skill_frame = 5
 
         if self.skill_Trigger == 1:
-            main_game.stage1_map.handle_move(frame_time)
-            main_game.stage2_map.handle_move(frame_time)
-            main_game.stage3_map.handle_move(frame_time)
+            if choice_state.CHAR_choice == 0:
+                main_game.hp_gauge.frame -= 50
+                self.skill_frame = 0
+                self.skill_Trigger = 0
 
-            for Mon in main_game.stage1_monster:
-                Mon.handle_move(frame_time)
+            elif choice_state.CHAR_choice == 1:
+                ITEM.protect_State = 3
+                self.skill_frame = 0
+                self.skill_Trigger = 0
 
-            for Mon in main_game.stage2_monster:
-                Mon.handle_move(frame_time)
-
-            for Mon in main_game.stage3_monster:
-                Mon.handle_move(frame_time)
-
-            for ATK in main_game.stage2_monster_attack:
-                if ATK.ATTACK == 1:
-                    ATK.attack_move(frame_time)
-                else:
-                    ATK.handle_move(frame_time)
-
-            for Trp in main_game.stage2_trap:
-                Trp.handle_move(frame_time)
-
-            self.skill_frame -= 1
-
-        if self.skill_frame == 0:
-            self.skill_Trigger = 0
-
-    def handel_skill(self):
-        if self.skill_frame == 3:
+    def handle_skill(self):
+        if self.skill_frame >= 5:
             self.skill_Trigger = 1
